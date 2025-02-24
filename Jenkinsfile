@@ -5,7 +5,7 @@ pipeline {
    }
 stages{ 
 stage('build') { 
-      steps{ 
+      steps { 
          sh 'mvn clean deploy' 
       }
     }   
@@ -14,7 +14,7 @@ stage('build') {
        environent{  
           scannerHome = tool 'my-sonar-scanner' 
        }
-    steps{ 
+    steps { 
           withsonarqubeenv (my-sonarqube-server) { 
      
 
