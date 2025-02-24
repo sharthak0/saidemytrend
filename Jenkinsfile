@@ -13,7 +13,7 @@ stages{
     
     stage('sonarqube analysis'){ 
        environent{  
-          scannerHome = Tool 'my-sonar-scanner' 
+          scannerHome = tool 'my-sonar-scanner' 
        }
     steps{ 
           withsonarqubeenv (my-sonarqube-server) { 
