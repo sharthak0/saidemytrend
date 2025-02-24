@@ -19,7 +19,7 @@ stages{
           withsonarqubeenv (my-sonarqube-server) { 
      
 
-              sh "${scannerHome}/bin-sonar-sanner" 
+              sh "${scannerHome}/bin-sonar-scanner" 
           } 
         }
      
