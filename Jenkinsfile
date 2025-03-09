@@ -38,7 +38,7 @@
 		  def qg= waitForQualityGate() 
 		  if (qg.status != OK ) { 
 		    
-			    echo "warning quality gate failed but continuing pipeline : ${qg.status}"  
+			    echo "Warning: Quality gate failed but continuing pipeline: ${qg.status}"  
 		    } 
          } 
        } 
