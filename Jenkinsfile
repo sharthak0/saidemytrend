@@ -11,11 +11,13 @@ pipeline {
              echo "---------stop buildin-----------"
           }  
        }    
-        stage('testing') {  
-            echo "------unti test start--------" 
-            sh 'mvn surefire-report:report' 
-            echo "------unit test stop---------"
-            
+        stage('testing') {   
+            steps{
+               echo "------unti test start--------" 
+                sh 'mvn surefire-report:report' 
+                echo "------unit test stop---------" 
+            } 
+        }   
          stage('sonarqube analysis') { 
             environment { 
              scannerHome = tool 'my-sonar-scanner'  
