@@ -26,11 +26,25 @@
                     env.scannerHome = tool 'my-sonar-scanner'  
                 }
                 withSonarQubeEnv('my-sonarqube-server') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh "${scannerHome}/bin/sonar-scanner" 
+ 
                 }            
             } 
         } 
-    } 
+          stage('qualty gate') { 
+   steps{ 
+     script{ 
+	    timeout(time: 1,unt: HOURS) { 
+		  def qg= wait For QualityGate() 
+		  if (qg.status != OK ) { 
+		    
+			    error "pipeline aborted due to quality gate falure: ${qg.status}"  
+		    } 
+         } 
+       } 
+     } 
+   }       
+ } 
 }
                
 
