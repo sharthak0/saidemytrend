@@ -5,10 +5,17 @@ pipeline {
       } 
     stages { 
        stage('bulding') { 
-         steps { 
-            sh 'mvn clean deploy'  
+         steps {   
+             echo "----------start building--------"
+            sh 'mvn clean deploy -Dmaven.test.skip=true'   
+             echo "---------stop buildin-----------"
           }  
-       }  
+       }    
+        stage('testing') {  
+            echo "------unti test start--------" 
+            sh 'mvn surefire-report:report' 
+            echo "------unit test stop---------"
+            
          stage('sonarqube analysis') { 
             environment { 
              scannerHome = tool 'my-sonar-scanner'  
